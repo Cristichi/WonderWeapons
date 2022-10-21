@@ -12,6 +12,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Firework;
 import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -95,6 +96,26 @@ public class Thundermaker extends WonderWeapon {
 									}
 								}
 							}, 10);
+				} else if (projectile instanceof Firework) {
+					Firework firework = (Firework) projectile;
+					Team team = WonderWeaponsPlugin.teams.get(ChatColor.WHITE);
+					team.addEntry(firework.getUniqueId().toString());
+
+					firework.setVelocity(firework.getVelocity().multiply(1.5));
+					firework.setGlowing(true);
+					firework.setGravity(false);
+					firework.setMetadata(nameMetaArrow, metaArrow);
+					e.setProjectile(firework);
+
+					Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("WonderWeapons"),
+							new Runnable() {
+								@Override
+								public void run() {
+									if (firework != null && !firework.isDead()) {
+										impact(firework);
+									}
+								}
+							}, 10);
 				}
 			}
 		}
@@ -113,18 +134,16 @@ public class Thundermaker extends WonderWeapon {
 		private void onHit(ProjectileHitEvent e) {
 //			if (e.getHitBlock() != null) {
 				Projectile projectile = e.getEntity();
-				if (projectile instanceof Arrow) {
-					if (projectile.hasMetadata(nameMetaArrow)) {
-						impact(projectile);
-					}
+				if (projectile.hasMetadata(nameMetaArrow)) {
+					impact(projectile);
 				}	
 //			}
 		}
 
-		private void impact(Entity flecha) {
-			Location loc = flecha.getLocation();
-			flecha.getWorld().strikeLightningEffect(loc);
-			flecha.remove();
+		private void impact(Entity projectile) {
+			Location loc = projectile.getLocation();
+			projectile.getWorld().strikeLightningEffect(loc);
+			projectile.remove();
 		}
 	}
 }
