@@ -6,6 +6,8 @@ import java.util.logging.Level;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
+import org.bukkit.FireworkEffect;
+import org.bukkit.FireworkEffect.Type;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -41,9 +43,9 @@ public class Thundermaker extends WonderWeapon {
 		super("Thundermaker", Material.CROSSBOW, new NamespacedKey(plugin, "craft_thundermaker_bow"));
 
 		ItemMeta im = getItemMeta();
-		im.setDisplayName(ChatColor.WHITE.toString()+ChatColor.BOLD+"Thundermaker");
+		im.setDisplayName(ChatColor.WHITE.toString() + ChatColor.BOLD + "Thundermaker");
 		setItemMeta(im);
-		
+
 		if (key == null) {
 			key = new NamespacedKey(plugin, "thundermaker_bow");
 			metaArrow = new FixedMetadataValue(plugin, true);
@@ -53,7 +55,7 @@ public class Thundermaker extends WonderWeapon {
 
 		setMeta(key);
 
-		ArrayList<String> lore = new ArrayList<>(3);	
+		ArrayList<String> lore = new ArrayList<>(3);
 		lore.add(ChatColor.YELLOW + "Extra large A+ batteries");
 		setLore(lore);
 
@@ -63,7 +65,8 @@ public class Thundermaker extends WonderWeapon {
 			Bukkit.addRecipe(recipe);
 		} catch (Exception e) {
 			Bukkit.getLogger().log(Level.WARNING,
-					"Recipe for Thundermaker could not be added. The item will be uncraftable. Error: " + e.getMessage());
+					"Recipe for Thundermaker could not be added. The item will be uncraftable. Error: "
+							+ e.getMessage());
 			e.printStackTrace();
 		}
 	}
@@ -81,7 +84,8 @@ public class Thundermaker extends WonderWeapon {
 					Team team = WonderWeaponsPlugin.teams.get(ChatColor.WHITE);
 					team.addEntry(arrow.getUniqueId().toString());
 
-					arrow.setVelocity(arrow.getVelocity().multiply(1.5).add(new Vector(Math.random()-.5, Math.random()-.5, Math.random()-.5)));
+					arrow.setVelocity(arrow.getVelocity().multiply(1.5)
+							.add(new Vector(Math.random() - .5, Math.random() - .5, Math.random() - .5)));
 					arrow.setColor(Color.WHITE);
 					arrow.setGlowing(true);
 					arrow.setGravity(false);
@@ -101,12 +105,19 @@ public class Thundermaker extends WonderWeapon {
 					Firework firework = (Firework) projectile;
 					FireworkMeta fwm = firework.getFireworkMeta();
 					fwm.setPower(127);
-					fwm.setUnbreakable(true);
+					fwm.addEffect(FireworkEffect.builder()
+							.with(Type.BURST)
+                            .flicker(true)
+                            .trail(true)
+                            .withColor(Color.WHITE)
+                            .withFade(Color.WHITE)
+                            .build());
 					firework.setFireworkMeta(fwm);
 					Team team = WonderWeaponsPlugin.teams.get(ChatColor.WHITE);
 					team.addEntry(firework.getUniqueId().toString());
 
-					firework.setVelocity(firework.getVelocity().multiply(0.5).add(new Vector(Math.random()/30, Math.random()/20, Math.random()/30)));
+					firework.setVelocity(firework.getVelocity().multiply(0.5)
+							.add(new Vector(Math.random() / 30, Math.random() / 20, Math.random() / 30)));
 					firework.setGlowing(true);
 					firework.setGravity(false);
 					firework.setMetadata(nameMetaArrow, metaArrow);
@@ -124,7 +135,7 @@ public class Thundermaker extends WonderWeapon {
 				}
 			}
 		}
-		
+
 //		@EventHandler
 //		private void onDamaged(EntityDamageEvent e) {
 //			Entity damager = e.getEntity();
@@ -138,17 +149,20 @@ public class Thundermaker extends WonderWeapon {
 		@EventHandler
 		private void onHit(ProjectileHitEvent e) {
 //			if (e.getHitBlock() != null) {
-				Projectile projectile = e.getEntity();
-				if (projectile.hasMetadata(nameMetaArrow)) {
-					impact(projectile);
-				}	
+			Projectile projectile = e.getEntity();
+			if (projectile.hasMetadata(nameMetaArrow)) {
+				impact(projectile);
+			}
 //			}
 		}
 
 		private void impact(Entity projectile) {
 			Location loc = projectile.getLocation();
 			projectile.getWorld().strikeLightningEffect(loc);
-			projectile.remove();
+			if (projectile instanceof Firework) {
+				((Firework) projectile).detonate();
+			} else
+				projectile.remove();
 		}
 	}
 }
