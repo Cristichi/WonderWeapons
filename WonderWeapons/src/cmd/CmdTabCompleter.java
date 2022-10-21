@@ -18,7 +18,7 @@ public class CmdTabCompleter implements TabCompleter {
 				sol.add("help");
 				sol.add("list");
 				sol.add("recipe");
-				if (sender.hasPermission("wonderweapons.useop"))
+				if (sender.hasPermission("wonderweapons.admin"))
 					sol.add("give");
 				return sol;
 			}
@@ -26,9 +26,9 @@ public class CmdTabCompleter implements TabCompleter {
 				switch (args[0].toLowerCase()) {
 				case "recipe": {
 					List<String> sol = new ArrayList<>(0);
-					String writenName = args.length>=4?args[3].toLowerCase().trim():"";
+					String writenName = args.length>=4?args[1].toLowerCase().trim():"";
 					for (WonderWeapon ww : WonderWeapon.LIST) {
-						if (writenName.isEmpty()||ww.getName().startsWith(writenName)) {
+						if (writenName.isEmpty()||ww.getName().toLowerCase().startsWith(writenName)) {
 							sol.add(ww.getName());
 						}
 					}
@@ -43,9 +43,9 @@ public class CmdTabCompleter implements TabCompleter {
 				switch (args[0].toLowerCase()) {
 				case "give": {
 					List<String> sol = new ArrayList<>(0);
-					String writenName = args.length>=4?args[3].toLowerCase().trim():"";
+					String writenName = args.length>=4?args[2].toLowerCase().trim():"";
 					for (WonderWeapon ww : WonderWeapon.LIST) {
-						if (writenName.isEmpty()||ww.getName().startsWith(writenName)) {
+						if (writenName.isEmpty()||ww.getName().toLowerCase().startsWith(writenName)) {
 							sol.add(ww.getName());
 						}
 					}

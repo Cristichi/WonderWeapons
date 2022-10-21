@@ -166,9 +166,9 @@ public class CmdExecutor implements CommandExecutor {
 
 				CraftInventoryCustom inv = (CraftInventoryCustom) Bukkit.createInventory(p, InventoryType.WORKBENCH,
 						header+weapon.getItemMeta().getDisplayName());
-				Recipe r = weapon.getRecipe();
-				if (r instanceof ShapedRecipe) {
-					ShapedRecipe sr = (ShapedRecipe) r;
+				Recipe recipe = weapon.getRecipe();
+				if (recipe instanceof ShapedRecipe) {
+					ShapedRecipe sr = (ShapedRecipe) recipe;
 					String[] shape = sr.getShape();
 					Map<Character, ItemStack> map = sr.getIngredientMap();
 
@@ -181,8 +181,8 @@ public class CmdExecutor implements CommandExecutor {
 							}
 						}
 					}
-				} else if (r instanceof ShapelessRecipe) {
-					ShapelessRecipe sr = (ShapelessRecipe) r;
+				} else if (recipe instanceof ShapelessRecipe) {
+					ShapelessRecipe sr = (ShapelessRecipe) recipe;
 					List<ItemStack> lis = sr.getIngredientList();
 					for (ItemStack itemStack : lis) {
 						inv.addItem(itemStack);
