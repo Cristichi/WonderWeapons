@@ -1,0 +1,20 @@
+name: WonderWeapons
+main: main.WonderWeaponsPlugin
+version: 1.15
+api-version: 1.13
+commands:
+  cristichiwonderweapons:
+    description: It helps you interact with the plugin and how it works
+    aliases: [ww, wweapons, wonderw, cww, cwweapons, cwonderw]
+permissions:
+  wonderweapons.*:
+    children:
+      wonderweapons.use: true
+      wonderweapons.craft: true
+      wonderweapons.useop: true
+  wonderweapons.use:
+    default: true
+  wonderweapons.craft:
+    default: true
+  wonderweapons.useop:
+    default: false
