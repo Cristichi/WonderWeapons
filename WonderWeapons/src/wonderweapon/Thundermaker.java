@@ -101,7 +101,7 @@ public class Thundermaker extends WonderWeapon {
 					Team team = WonderWeaponsPlugin.teams.get(ChatColor.WHITE);
 					team.addEntry(firework.getUniqueId().toString());
 
-					firework.setVelocity(firework.getVelocity().multiply(1.5));
+					firework.setVelocity(firework.getVelocity().multiply(1.5).add(new Vector(Math.random()/10, Math.random(), Math.random()/10)));
 					firework.setGlowing(true);
 					firework.setGravity(false);
 					firework.setMetadata(nameMetaArrow, metaArrow);
