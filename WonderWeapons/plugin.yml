@@ -11,7 +11,7 @@ permissions:
     children:
       wonderweapons.use: true
       wonderweapons.craft: true
-      wonderweapons.useop: true
+      wonderweapons.admin: true
   wonderweapons.use:
     default: true
   wonderweapons.craft:

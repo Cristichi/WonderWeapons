@@ -23,12 +23,13 @@ import org.bukkit.craftbukkit.v1_19_R1.inventory.CraftInventoryCustom;
 public class CmdExecutor implements CommandExecutor {
 
 	private String header, version;
-	private String accent, text;
+	private String accent, text, error;
 
-	public CmdExecutor(String header, String accent, String text, String version) {
+	public CmdExecutor(String header, String accent, String text, String error, String version) {
 		this.header = header;
 		this.accent = accent;
 		this.text = text;
+		this.error = error;
 		this.version = version;
 	}
 
@@ -95,6 +96,10 @@ public class CmdExecutor implements CommandExecutor {
 	}
 
 	private void cmdGive(String label, String[] args, CommandSender sender) {
+		if (!sender.hasPermission("wonderweapons.admin")) {
+			sender.sendMessage(header+error+"You don't have permission to use that command. But nice try.");
+			return;
+		}
 		if (args.length < 3) {
 			sender.sendMessage(header + "Uso: " + accent + "/" + label + " " + args[0] + " <Jugador> <Item>");
 			return;

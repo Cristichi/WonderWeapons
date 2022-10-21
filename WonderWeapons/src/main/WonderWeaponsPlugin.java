@@ -36,10 +36,11 @@ public class WonderWeaponsPlugin extends JavaPlugin implements Listener {
 	public static final ChatColor MAIN_COLOR = ChatColor.BLUE;
 	public static final ChatColor TEXT_COLOR = ChatColor.AQUA;
 	public static final ChatColor ACCENT_COLOR = ChatColor.DARK_AQUA;
-	public static final ChatColor ERROR_COLOR = ChatColor.DARK_RED;
+	public static final ChatColor ERROR_COLOR = ChatColor.RED;
 	public final String header = MAIN_COLOR + "[Wonder Weapons] " + TEXT_COLOR;
 	public final String accent = ACCENT_COLOR.toString();
 	public final String text = TEXT_COLOR.toString();
+	public final String error = ERROR_COLOR.toString();
 
 	/**
 	 * These teams will serve the purpose of making things glow in specific colors. They get generated for this plugin using the color's name
@@ -89,7 +90,7 @@ public class WonderWeaponsPlugin extends JavaPlugin implements Listener {
 		getServer().getPluginManager().registerEvents(this, this);
 		getLogger().info("WonderWeapons Enabled");
 		
-		getCommand("cristichiwonderweapons").setExecutor(new CmdExecutor(header, accent, text, desc.getVersion()));
+		getCommand("cristichiwonderweapons").setExecutor(new CmdExecutor(header, accent, text, error, desc.getVersion()));
 		getCommand("cristichiwonderweapons").setTabCompleter(new CmdTabCompleter());
 		
 	}
