@@ -20,6 +20,7 @@ import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.persistence.PersistentDataType;
@@ -98,10 +99,14 @@ public class Thundermaker extends WonderWeapon {
 							}, 10);
 				} else if (projectile instanceof Firework) {
 					Firework firework = (Firework) projectile;
+					FireworkMeta fwm = firework.getFireworkMeta();
+					fwm.setPower(127);
+					fwm.setUnbreakable(true);
+					firework.setFireworkMeta(fwm);
 					Team team = WonderWeaponsPlugin.teams.get(ChatColor.WHITE);
 					team.addEntry(firework.getUniqueId().toString());
 
-					firework.setVelocity(firework.getVelocity().multiply(1.5).add(new Vector(Math.random()/10, Math.random(), Math.random()/10)));
+					firework.setVelocity(firework.getVelocity().multiply(0.5).add(new Vector(Math.random()/30, Math.random()/20, Math.random()/30)));
 					firework.setGlowing(true);
 					firework.setGravity(false);
 					firework.setMetadata(nameMetaArrow, metaArrow);
@@ -115,7 +120,7 @@ public class Thundermaker extends WonderWeapon {
 										impact(firework);
 									}
 								}
-							}, 10);
+							}, 60);
 				}
 			}
 		}
