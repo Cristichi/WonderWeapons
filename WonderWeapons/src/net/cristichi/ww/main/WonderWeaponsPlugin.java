@@ -1,4 +1,4 @@
-package main;
+package net.cristichi.ww.main;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,14 +21,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
-import cmd.CmdExecutor;
-import cmd.CmdTabCompleter;
-import wonderweapon.MourningWall;
-import wonderweapon.RayBow;
-import wonderweapon.RayBowX2;
-import wonderweapon.Thundermaker;
-import wonderweapon.TravelingBow;
-import wonderweapon.WonderWeapon;
+import net.cristichi.ww.MourningWall;
+import net.cristichi.ww.RayBow;
+import net.cristichi.ww.RayBowX2;
+import net.cristichi.ww.Thundermaker;
+import net.cristichi.ww.TravelingBow;
+import net.cristichi.ww.WonderWeapon;
+import net.cristichi.ww.obj.CmdExecutor;
+import net.cristichi.ww.obj.CmdTabCompleter;
 
 public class WonderWeaponsPlugin extends JavaPlugin implements Listener {
 	private PluginDescriptionFile desc = getDescription();

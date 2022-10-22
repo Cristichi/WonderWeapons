@@ -1,4 +1,4 @@
-package obj;
+package net.cristichi.ww.obj;
 
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;

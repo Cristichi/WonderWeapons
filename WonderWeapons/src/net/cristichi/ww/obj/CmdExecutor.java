@@ -1,4 +1,4 @@
-package cmd;
+package net.cristichi.ww.obj;
 
 import java.util.Collection;
 import java.util.List;
@@ -16,7 +16,7 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.ShapelessRecipe;
 
-import wonderweapon.WonderWeapon;
+import net.cristichi.ww.WonderWeapon;
 
 import org.bukkit.craftbukkit.v1_19_R1.inventory.CraftInventoryCustom;
 

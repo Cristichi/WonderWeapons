@@ -1,4 +1,4 @@
-package wonderweapon;
+package net.cristichi.ww;
 
 import java.util.ArrayList;
 
@@ -11,7 +11,7 @@ import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.Plugin;
 
-import obj.GlowEnchantment;
+import net.cristichi.ww.obj.GlowEnchantment;
 
 public class WonderWeapon extends ItemStack {
 	public static ArrayList<WonderWeapon> LIST = new ArrayList<>();

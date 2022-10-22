@@ -1,4 +1,4 @@
-package wonderweapon;
+package net.cristichi.ww;
 
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -31,7 +31,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.scoreboard.Team;
 import org.bukkit.util.Vector;
 
-import main.WonderWeaponsPlugin;
+import net.cristichi.ww.main.WonderWeaponsPlugin;
 
 public class Thundermaker extends WonderWeapon {
 	public static NamespacedKey key;

@@ -1,4 +1,4 @@
-package cmd;
+package net.cristichi.ww.obj;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 
-import wonderweapon.WonderWeapon;
+import net.cristichi.ww.WonderWeapon;
 
 public class CmdTabCompleter implements TabCompleter {
 
