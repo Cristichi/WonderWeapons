@@ -11,6 +11,7 @@ import org.bukkit.FireworkEffect.Type;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
@@ -97,7 +98,7 @@ public class Thundermaker extends WonderWeapon {
 								@Override
 								public void run() {
 									if (arrow != null && !arrow.isDead()) {
-										impact(arrow);
+										impact(arrow, null, null);
 									}
 								}
 							}, 10);
@@ -105,19 +106,14 @@ public class Thundermaker extends WonderWeapon {
 					Firework firework = (Firework) projectile;
 					FireworkMeta fwm = firework.getFireworkMeta();
 					fwm.setPower(127);
-					fwm.addEffect(FireworkEffect.builder()
-							.with(Type.BURST)
-                            .flicker(true)
-                            .trail(true)
-                            .withColor(Color.WHITE)
-                            .withFade(Color.WHITE)
-                            .build());
+					fwm.addEffect(FireworkEffect.builder().with(Type.BURST).flicker(true).trail(true)
+							.withColor(Color.WHITE).withFade(Color.WHITE).build());
 					firework.setFireworkMeta(fwm);
 					Team team = WonderWeaponsPlugin.teams.get(ChatColor.WHITE);
 					team.addEntry(firework.getUniqueId().toString());
 
 					firework.setVelocity(firework.getVelocity().multiply(0.5)
-							.add(new Vector(Math.random() / 30, Math.random() / 20, Math.random() / 30)));
+							.add(new Vector(Math.random() / 50, Math.random() / 50, Math.random() / 50)));
 					firework.setGlowing(true);
 					firework.setGravity(false);
 					firework.setMetadata(nameMetaArrow, metaArrow);
@@ -128,7 +124,7 @@ public class Thundermaker extends WonderWeapon {
 								@Override
 								public void run() {
 									if (firework != null && !firework.isDead()) {
-										impact(firework);
+										impact(firework, null, null);
 									}
 								}
 							}, 60);
@@ -151,14 +147,32 @@ public class Thundermaker extends WonderWeapon {
 //			if (e.getHitBlock() != null) {
 			Projectile projectile = e.getEntity();
 			if (projectile.hasMetadata(nameMetaArrow)) {
-				impact(projectile);
+				impact(projectile, e.getHitEntity(), e.getHitBlock());
 			}
 //			}
 		}
 
-		private void impact(Entity projectile) {
-			Location loc = projectile.getLocation();
+		private void impact(Entity projectile, Entity targetEntity, Block targetBlock) {
+			Location loc = targetEntity != null ? targetEntity.getLocation()
+					: (targetBlock != null ? targetBlock.getLocation() : projectile.getLocation());
 			projectile.getWorld().strikeLightningEffect(loc);
+			if (loc.getWorld().hasStorm()) {
+				for (int i = 0; i < 5; i++) {
+					Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("WonderWeapons"),
+							new Runnable() {
+								@Override
+								public void run() {
+									if (targetEntity != null && !targetEntity.isDead()) {
+										targetEntity.getWorld().strikeLightning(targetEntity.getLocation());
+									} else if (targetBlock != null) {
+										targetBlock.getWorld().strikeLightning(targetBlock.getLocation());
+									} else {
+										loc.getWorld().strikeLightningEffect(loc);
+									} 
+								}
+							}, (long) (i*10 + Math.random() * 10));
+				}
+			}
 			if (projectile instanceof Firework) {
 				((Firework) projectile).detonate();
 			} else
