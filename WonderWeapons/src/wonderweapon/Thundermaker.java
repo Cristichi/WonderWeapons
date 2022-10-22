@@ -60,8 +60,8 @@ public class Thundermaker extends WonderWeapon {
 		lore.add(ChatColor.YELLOW + "Extra large A+ batteries");
 		setLore(lore);
 
-		recipe = new ShapedRecipe(getKeyCraft(), this).shape("L L", "RCR", "RRR").setIngredient('C', Material.CROSSBOW)
-				.setIngredient('L', Material.LIGHTNING_ROD).setIngredient('R', Material.REDSTONE_BLOCK);
+		recipe = new ShapedRecipe(getKeyCraft(), this).shape("LDL", "RCR", "RRR").setIngredient('C', Material.CROSSBOW)
+				.setIngredient('L', Material.LIGHTNING_ROD).setIngredient('R', Material.REDSTONE_BLOCK).setIngredient('R', Material.DIAMOND);
 		try {
 			Bukkit.addRecipe(recipe);
 		} catch (Exception e) {
