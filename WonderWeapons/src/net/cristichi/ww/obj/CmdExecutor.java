@@ -164,7 +164,7 @@ public class CmdExecutor implements CommandExecutor {
 				ok = true;
 				p.playSound(p.getLocation(), Sound.BLOCK_ANVIL_PLACE, 0.7f, 0.7f);
 
-				CraftInventoryCustom inv = (CraftInventoryCustom) Bukkit.createInventory(p, InventoryType.WORKBENCH,
+				CraftInventoryCustom craftInventory = (CraftInventoryCustom) Bukkit.createInventory(p, InventoryType.WORKBENCH,
 						header+weapon.getItemMeta().getDisplayName());
 				Recipe recipe = weapon.getRecipe();
 				if (recipe instanceof ShapedRecipe) {
@@ -177,7 +177,7 @@ public class CmdExecutor implements CommandExecutor {
 						for (int j = 0; j < cs.length; j++) {
 							ItemStack is = map.getOrDefault(cs[j], null);
 							if (is != null) {
-								inv.setItem(i * 3 + j + 1, is);
+								craftInventory.setItem(i * 3 + j + 1, is);
 							}
 						}
 					}
@@ -185,11 +185,11 @@ public class CmdExecutor implements CommandExecutor {
 					ShapelessRecipe sr = (ShapelessRecipe) recipe;
 					List<ItemStack> lis = sr.getIngredientList();
 					for (ItemStack itemStack : lis) {
-						inv.addItem(itemStack);
+						craftInventory.addItem(itemStack);
 					}
 				}
-				inv.setItem(0, weapon);
-				p.openInventory(inv);
+				craftInventory.setItem(0, weapon);
+				p.openInventory(craftInventory);
 			}
 		}
 		if (!ok) {

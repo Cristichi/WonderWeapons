@@ -1,5 +1,5 @@
 name: WonderWeapons
-main: main.WonderWeaponsPlugin
+main: net.cristichi.ww.main.WonderWeaponsPlugin
 version: 1.15
 api-version: 1.13
 commands:
