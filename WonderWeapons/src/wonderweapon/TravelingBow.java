@@ -34,7 +34,7 @@ public class TravelingBow extends WonderWeapon {
 	private static FixedMetadataValue metaArrow;
 
 	public TravelingBow(Plugin plugin) {
-		super("Traveling Bow", Material.BOW, new NamespacedKey(plugin, "craft_traveling_bow"));
+		super(plugin, "Traveling Bow", Material.BOW, new NamespacedKey(plugin, "craft_traveling_bow"));
 
 		ItemMeta im = getItemMeta();
 		im.setDisplayName(ChatColor.DARK_PURPLE+"Traveling Bow");

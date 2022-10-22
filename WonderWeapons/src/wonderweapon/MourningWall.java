@@ -32,7 +32,7 @@ public class MourningWall extends WonderWeapon {
 //	private static FixedMetadataValue metaArrow;
 
 	public MourningWall(Plugin plugin) {
-		super("Mourning Wall", Material.SHIELD, new NamespacedKey(plugin, "craft_mour_wall_bow"));
+		super(plugin, "Mourning Wall", Material.SHIELD, new NamespacedKey(plugin, "craft_mour_wall_bow"));
 
 		ItemMeta im = getItemMeta();
 		im.setDisplayName(ChatColor.DARK_GRAY+"Mourning Wall");
@@ -82,7 +82,7 @@ public class MourningWall extends WonderWeapon {
 			if (ent instanceof HumanEntity) {
 				HumanEntity h = (HumanEntity) ent;
 				ItemStack offHand = h.getInventory().getItemInOffHand();
-				if (offHand != null && offHand.getItemMeta().getPersistentDataContainer().has(key, PersistentDataType.BYTE)) {
+				if (offHand != null && offHand.getItemMeta() !=null && offHand.getItemMeta().getPersistentDataContainer().has(key, PersistentDataType.BYTE)) {
 //					e.setDamage(e.getDamage() / 2);
 					e.setCancelled(true);
 					ent.getWorld().playSound(ent.getLocation(), Sound.ENTITY_BAT_HURT, 1f, 1f);

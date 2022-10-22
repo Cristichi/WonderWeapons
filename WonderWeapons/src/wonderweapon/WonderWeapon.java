@@ -9,6 +9,9 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.plugin.Plugin;
+
+import obj.GlowEnchantment;
 
 public class WonderWeapon extends ItemStack {
 	public static ArrayList<WonderWeapon> LIST = new ArrayList<>();
@@ -18,12 +21,12 @@ public class WonderWeapon extends ItemStack {
 	protected NamespacedKey keyCraft;
 	protected FixedMetadataValue meta;
 
-	protected WonderWeapon(String name, Material type, NamespacedKey keyCraft) {
+	protected WonderWeapon(Plugin plugin, String name, Material type, NamespacedKey keyCraft) {
 		super(type);
 		
-//		ItemMeta im = getItemMeta();
-//		im.setDisplayName(ChatColor.RESET + name);
-//		setItemMeta(im);
+		ItemMeta im = getItemMeta();
+		im.addEnchant(new GlowEnchantment(new NamespacedKey(plugin, "glow_ench")), 1, false);
+		setItemMeta(im);
 		
 		this.name = name;
 		this.keyCraft = keyCraft;

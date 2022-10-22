@@ -34,7 +34,7 @@ public class RayBow extends WonderWeapon {
 	private static FixedMetadataValue metaArrow;
 
 	public RayBow(Plugin plugin) {
-		super("Ray Bow", Material.BOW, new NamespacedKey(plugin, "craft_ray_bow"));
+		super(plugin, "Ray Bow", Material.BOW, new NamespacedKey(plugin, "craft_ray_bow"));
 		
 		ItemMeta im = getItemMeta();
 		im.setDisplayName(ChatColor.RED+"Ray Bow");

@@ -40,7 +40,7 @@ public class Thundermaker extends WonderWeapon {
 	private static FixedMetadataValue metaArrow;
 
 	public Thundermaker(Plugin plugin) {
-		super("Thundermaker", Material.CROSSBOW, new NamespacedKey(plugin, "craft_thundermaker_bow"));
+		super(plugin, "Thundermaker", Material.CROSSBOW, new NamespacedKey(plugin, "craft_thundermaker_bow"));
 
 		ItemMeta im = getItemMeta();
 		im.setDisplayName(ChatColor.WHITE.toString() + ChatColor.BOLD + "Thundermaker");
