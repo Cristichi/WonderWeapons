@@ -8,6 +8,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -63,12 +64,6 @@ public class AnubisHoe extends WonderWeapon {
 
 	public static class AnubisHoeListener implements Listener {
 
-		private String header;
-
-		public AnubisHoeListener(String header) {
-			this.header = header;
-		}
-
 		@EventHandler
 		private void onKill(EntityDeathEvent e) {
 			LivingEntity victim = e.getEntity();
@@ -94,7 +89,7 @@ public class AnubisHoe extends WonderWeapon {
 							im.getPersistentDataContainer().set(keyStacks, PersistentDataType.INTEGER, stacks);
 							hando.setItemMeta(im);
 
-							killer.sendMessage(header + "You collected one soul.");
+							killer.playSound(killer, Sound.BLOCK_ANVIL_USE, 1, 1);
 						}
 					}
 				}
@@ -112,8 +107,6 @@ public class AnubisHoe extends WonderWeapon {
 							PersistentDataType.INTEGER);
 					if (stacks != null) {
 						e.setDamage(e.getDamage() + stacks*damagePerStack);
-						Bukkit.getLogger().info(damager.getName() + " did an extra " + stacks
-								+ " damage, to a total of " + e.getDamage());
 					}
 				}
 			}

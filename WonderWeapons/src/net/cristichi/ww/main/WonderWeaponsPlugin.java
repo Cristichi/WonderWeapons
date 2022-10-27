@@ -114,7 +114,7 @@ public class WonderWeaponsPlugin extends JavaPlugin implements Listener {
 		thundermaker = new Thundermaker(this);
 		getServer().getPluginManager().registerEvents(Thundermaker.listener, this);
 		anubisHoe = new AnubisHoe(this);
-		getServer().getPluginManager().registerEvents(new AnubisHoe.AnubisHoeListener(header), this);
+		getServer().getPluginManager().registerEvents(new AnubisHoe.AnubisHoeListener(), this);
 
 		getServer().getPluginManager().registerEvents(this, this);
 		getLogger().info("WonderWeapons Enabled");
