@@ -21,6 +21,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
+import net.cristichi.ww.AnubisHoe;
 import net.cristichi.ww.MourningWall;
 import net.cristichi.ww.RayBow;
 import net.cristichi.ww.RayBowX2;
@@ -57,6 +58,7 @@ public class WonderWeaponsPlugin extends JavaPlugin implements Listener {
 	public static TravelingBow travelingBow;
 	public static MourningWall mourningWall;
 	public static Thundermaker thundermaker;
+	public static AnubisHoe anubisHoe;
 
 	@Override
 	public void onEnable() {
@@ -86,6 +88,8 @@ public class WonderWeaponsPlugin extends JavaPlugin implements Listener {
 		getServer().getPluginManager().registerEvents(MourningWall.listener, this);
 		thundermaker = new Thundermaker(this);
 		getServer().getPluginManager().registerEvents(Thundermaker.listener, this);
+		anubisHoe = new AnubisHoe(this);
+		getServer().getPluginManager().registerEvents(new AnubisHoe.AnubisHoeListener(header), this);
 		
 		getServer().getPluginManager().registerEvents(this, this);
 		getLogger().info("WonderWeapons Enabled");
