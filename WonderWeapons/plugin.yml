@@ -17,4 +17,4 @@ permissions:
   wonderweapons.craft:
     default: true
   wonderweapons.useop:
-    default: false
+    default: op
