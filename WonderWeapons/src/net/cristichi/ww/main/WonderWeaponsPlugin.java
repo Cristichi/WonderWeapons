@@ -221,7 +221,7 @@ public class WonderWeaponsPlugin extends JavaPlugin implements Listener {
 		}
 
 		private void cmdUpdate(CommandSender sender, String accent, String text, String error) {
-			if (sender.hasPermission("wonderweapons.useop")) {
+			if (sender.hasPermission("wonderweapons.admin")) {
 				if (checkUpdate()) {
 					sender.sendMessage(header + "Updating Wonder Weapons...");
 					try {
