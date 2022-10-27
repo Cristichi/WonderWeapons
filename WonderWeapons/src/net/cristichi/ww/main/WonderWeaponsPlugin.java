@@ -374,50 +374,50 @@ public class WonderWeaponsPlugin extends JavaPlugin implements Listener {
 
 		public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 			switch (args.length) {
-				case 1: {
+			case 1: {
+				List<String> sol = new ArrayList<>(0);
+				sol.add("version");
+				sol.add("help");
+				sol.add("list");
+				if (sender instanceof Player)
+					sol.add("recipe");
+				if (sender.hasPermission("wonderweapons.admin")) {
+					sol.add("give");
+					sol.add("update");
+				}
+				return sol;
+			}
+			case 2: {
+				switch (args[0].toLowerCase()) {
+				case "recipe": {
 					List<String> sol = new ArrayList<>(0);
-					sol.add("version");
-					sol.add("help");
-					sol.add("list");
-					if (sender instanceof Player)
-						sol.add("recipe");
-					if (sender.hasPermission("wonderweapons.admin")) {
-						sol.add("give");
-						sol.add("update");
+					String writenName = args.length >= 4 ? args[1].toLowerCase().trim() : "";
+					for (WonderWeapon ww : WonderWeapon.LIST) {
+						if (writenName.isEmpty() || ww.getName().toLowerCase().startsWith(writenName)) {
+							sol.add(ww.getName());
+						}
 					}
 					return sol;
 				}
-				case 2: {
-					switch (args[0].toLowerCase()) {
-					case "recipe": {
-						List<String> sol = new ArrayList<>(0);
-						String writenName = args.length>=4?args[1].toLowerCase().trim():"";
-						for (WonderWeapon ww : WonderWeapon.LIST) {
-							if (writenName.isEmpty()||ww.getName().toLowerCase().startsWith(writenName)) {
-								sol.add(ww.getName());
-							}
-						}
-						return sol;
-					}
-					case "give": {
-						return null;
-					}
-					}
+				case "give": {
+					return null;
 				}
-				case 3: {
-					switch (args[0].toLowerCase()) {
-					case "give": {
-						List<String> sol = new ArrayList<>(0);
-						String writenName = args.length>=4?args[2].toLowerCase().trim():"";
-						for (WonderWeapon ww : WonderWeapon.LIST) {
-							if (writenName.isEmpty()||ww.getName().toLowerCase().startsWith(writenName)) {
-								sol.add(ww.getName());
-							}
-						}
-						return sol;
-					}
-					}
 				}
+			}
+			case 3: {
+				switch (args[0].toLowerCase()) {
+				case "give": {
+					List<String> sol = new ArrayList<>(0);
+					String writenName = args.length >= 4 ? args[2].toLowerCase().trim() : "";
+					for (WonderWeapon ww : WonderWeapon.LIST) {
+						if (writenName.isEmpty() || ww.getName().toLowerCase().startsWith(writenName)) {
+							sol.add(ww.getName());
+						}
+					}
+					return sol;
+				}
+				}
+			}
 			}
 			return new ArrayList<>(0);
 		}
