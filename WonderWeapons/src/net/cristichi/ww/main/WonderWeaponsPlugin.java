@@ -26,7 +26,7 @@ import net.cristichi.ww.MourningWall;
 import net.cristichi.ww.RayBow;
 import net.cristichi.ww.RayBowX2;
 import net.cristichi.ww.Thundermaker;
-import net.cristichi.ww.TravelingBow;
+import net.cristichi.ww.TravellingBow;
 import net.cristichi.ww.WonderWeapon;
 import net.cristichi.ww.obj.CmdExecutor;
 import net.cristichi.ww.obj.CmdTabCompleter;
@@ -55,7 +55,7 @@ public class WonderWeaponsPlugin extends JavaPlugin implements Listener {
 	// Weapons
 	public static RayBow rayBow;
 	public static RayBowX2 rayBowX2;
-	public static TravelingBow travelingBow;
+	public static TravellingBow travelingBow;
 	public static MourningWall mourningWall;
 	public static Thundermaker thundermaker;
 	public static AnubisHoe anubisHoe;
@@ -82,8 +82,8 @@ public class WonderWeaponsPlugin extends JavaPlugin implements Listener {
 		getServer().getPluginManager().registerEvents(RayBow.listener, this);
 		rayBowX2 = new RayBowX2(this);
 		getServer().getPluginManager().registerEvents(RayBowX2.listener, this);
-		travelingBow = new TravelingBow(this);
-		getServer().getPluginManager().registerEvents(TravelingBow.listener, this);
+		travelingBow = new TravellingBow(this);
+		getServer().getPluginManager().registerEvents(TravellingBow.listener, this);
 		mourningWall = new MourningWall(this);
 		getServer().getPluginManager().registerEvents(MourningWall.listener, this);
 		thundermaker = new Thundermaker(this);

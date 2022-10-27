@@ -26,22 +26,22 @@ import org.bukkit.scoreboard.Team;
 
 import net.cristichi.ww.main.WonderWeaponsPlugin;
 
-public class TravelingBow extends WonderWeapon {
+public class TravellingBow extends WonderWeapon {
 	public static NamespacedKey key;
-	public static TravelingBowListener listener = new TravelingBowListener();
+	public static TravellingBowListener listener = new TravellingBowListener();
 
-	private static final String nameMetaArrow = "TravelingArrow";
+	private static final String nameMetaArrow = "TravellingArrow";
 	private static FixedMetadataValue metaArrow;
 
-	public TravelingBow(Plugin plugin) {
-		super(plugin, "Traveling Bow", Material.BOW, new NamespacedKey(plugin, "craft_traveling_bow"));
+	public TravellingBow(Plugin plugin) {
+		super(plugin, "Travelling Bow", Material.BOW, new NamespacedKey(plugin, "craft_Travelling_bow"));
 
 		ItemMeta im = getItemMeta();
-		im.setDisplayName(ChatColor.DARK_PURPLE+"Traveling Bow");
+		im.setDisplayName(ChatColor.DARK_PURPLE+"Travelling Bow");
 		setItemMeta(im);
 		
 		if (key == null) {
-			key = new NamespacedKey(plugin, "traveling_bow");
+			key = new NamespacedKey(plugin, "Travelling_bow");
 			metaArrow = new FixedMetadataValue(plugin, true);
 		}
 
@@ -63,7 +63,7 @@ public class TravelingBow extends WonderWeapon {
 		}
 	}
 
-	public static class TravelingBowListener implements Listener {
+	public static class TravellingBowListener implements Listener {
 
 		@EventHandler
 		private void onBowShooot(EntityShootBowEvent e) {
