@@ -244,7 +244,8 @@ class Yylex {
   private int zzEndRead;
 
   /** number of newlines encountered up to the start of the matched text */
-  private int yyline;
+  @SuppressWarnings("unused")
+private int yyline;
 
   /** the number of characters up to the start of the matched text */
   private int yychar;
@@ -253,12 +254,14 @@ class Yylex {
    * the number of characters from the last newline up to the start of the 
    * matched text
    */
-  private int yycolumn;
+  @SuppressWarnings("unused")
+private int yycolumn;
 
   /** 
    * zzAtBOL == true <=> the scanner is currently at the beginning of a line
    */
-  private boolean zzAtBOL = true;
+  @SuppressWarnings("unused")
+private boolean zzAtBOL = true;
 
   /** zzAtEOF == true <=> the scanner is at the EOF */
   private boolean zzAtEOF;
@@ -498,7 +501,7 @@ int getPosition(){
    * @return      the next token
    * @exception   java.io.IOException  if any I/O-Error occurs
    */
-  public Yytoken yylex() throws java.io.IOException, ParseException {
+public Yytoken yylex() throws java.io.IOException, ParseException {
     int zzInput;
     int zzAction;
 
@@ -607,7 +610,7 @@ int getPosition(){
           }
         case 33: break;
         case 1: 
-          { throw new ParseException(yychar, ParseException.ERROR_UNEXPECTED_CHAR, new Character(yycharat(0)));
+          { throw new ParseException(yychar, ParseException.ERROR_UNEXPECTED_CHAR, Character.valueOf(yycharat(0)));
           }
         case 34: break;
         case 8: 
