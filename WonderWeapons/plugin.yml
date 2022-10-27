@@ -13,8 +13,11 @@ permissions:
       wonderweapons.craft: true
       wonderweapons.admin: true
   wonderweapons.use:
+    description: It allows the use of wonder weapons
     default: true
   wonderweapons.craft:
+    description: It allows the craft of wonder weapons
     default: true
-  wonderweapons.useop:
+  wonderweapons.admin:
+    description: It allows the use of admin commands
     default: op

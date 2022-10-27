@@ -121,7 +121,6 @@ public class WonderWeaponsPlugin extends JavaPlugin implements Listener {
 
 		getCommand("cristichiwonderweapons").setExecutor(new CmdExecutor());
 		getCommand("cristichiwonderweapons").setTabCompleter(new CmdTabCompleter());
-
 	}
 
 	@Override
@@ -370,17 +369,22 @@ public class WonderWeaponsPlugin extends JavaPlugin implements Listener {
 			}
 		}
 	}
+
 	class CmdTabCompleter implements TabCompleter {
 
 		public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 			switch (args.length) {
 				case 1: {
 					List<String> sol = new ArrayList<>(0);
+					sol.add("version");
 					sol.add("help");
 					sol.add("list");
-					sol.add("recipe");
-					if (sender.hasPermission("wonderweapons.admin"))
+					if (sender instanceof Player)
+						sol.add("recipe");
+					if (sender.hasPermission("wonderweapons.admin")) {
 						sol.add("give");
+						sol.add("update");
+					}
 					return sol;
 				}
 				case 2: {
