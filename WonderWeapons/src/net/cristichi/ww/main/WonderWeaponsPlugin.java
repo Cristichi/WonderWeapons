@@ -15,7 +15,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
-import org.bukkit.craftbukkit.v1_19_R1.inventory.CraftInventoryCustom;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -25,6 +24,7 @@ import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.inventory.InventoryType.SlotType;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.inventory.CraftingInventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
@@ -35,14 +35,14 @@ import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 import org.json.simple.parser.ParseException;
 
-import net.cristichi.ww.AnubisHoe;
-import net.cristichi.ww.MourningWall;
-import net.cristichi.ww.RayBow;
-import net.cristichi.ww.RayBowX2;
-import net.cristichi.ww.Thundermaker;
-import net.cristichi.ww.TravellingBow;
-import net.cristichi.ww.WonderWeapon;
 import net.cristichi.ww.updater.Updater;
+import net.cristichi.ww.weapons.AnubisHoe;
+import net.cristichi.ww.weapons.MourningWall;
+import net.cristichi.ww.weapons.RayBow;
+import net.cristichi.ww.weapons.RayBowX2;
+import net.cristichi.ww.weapons.Thundermaker;
+import net.cristichi.ww.weapons.TravellingBow;
+import net.cristichi.ww.weapons.WonderWeapon;
 
 public class WonderWeaponsPlugin extends JavaPlugin implements Listener {
 	private PluginDescriptionFile desc = getDescription();
@@ -336,7 +336,7 @@ public class WonderWeaponsPlugin extends JavaPlugin implements Listener {
 					ok = true;
 					p.playSound(p.getLocation(), Sound.BLOCK_ANVIL_PLACE, 0.7f, 0.7f);
 
-					CraftInventoryCustom craftInventory = (CraftInventoryCustom) Bukkit.createInventory(p,
+					CraftingInventory craftInventory = (CraftingInventory) Bukkit.createInventory(p,
 							InventoryType.WORKBENCH, header + weapon.getItemMeta().getDisplayName());
 					Recipe recipe = weapon.getRecipe();
 					if (recipe instanceof ShapedRecipe) {

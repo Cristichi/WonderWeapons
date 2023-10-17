@@ -1,4 +1,4 @@
-package net.cristichi.ww;
+package net.cristichi.ww.weapons;
 
 import java.util.ArrayList;
 import java.util.List;

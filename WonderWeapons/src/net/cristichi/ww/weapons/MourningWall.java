@@ -1,4 +1,4 @@
-package net.cristichi.ww;
+package net.cristichi.ww.weapons;
 
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -82,8 +82,7 @@ public class MourningWall extends WonderWeapon {
 			if (ent instanceof HumanEntity) {
 				HumanEntity h = (HumanEntity) ent;
 				ItemStack offHand = h.getInventory().getItemInOffHand();
-				if (offHand != null && offHand.getItemMeta() !=null && offHand.getItemMeta().getPersistentDataContainer().has(key, PersistentDataType.BYTE)) {
-//					e.setDamage(e.getDamage() / 2);
+				if (Math.random()>0.9 && offHand != null && offHand.getItemMeta() !=null && offHand.getItemMeta().getPersistentDataContainer().has(key, PersistentDataType.BYTE)) {
 					e.setCancelled(true);
 					ent.getWorld().playSound(ent.getLocation(), Sound.ENTITY_BAT_HURT, 1f, 1f);
 				}
